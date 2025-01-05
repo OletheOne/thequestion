@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a Question</h1>
+        <form id="questionForm">
+            <label for="question">Choose a question:</label>
+            <select id="question" name="question">
+                <option value="Are you hungry?">Are you hungry?</option>
+                <option value="Are you horny?">Are you horny?</option>
+                <option value="Are you wanting to be alone?">Are you wanting to be alone?</option>
+            </select>
+            <br>
+            <label for="answer">Your answer:</label>
+            <select id="answer" name="answer">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Not Sure">Not Sure</option>
+            </select>
+            <br>
+            <button type="submit">Generate Link</button>
+        </form>
+        <div id="linkContainer" class="hidden">
+            <p>Share this link with your wife:</p>
+            <a id="generatedLink" href="#">Generated Link</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

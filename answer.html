@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer the Question</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="questionText"></h1>
+        <form id="answerForm">
+            <label for="answer">Your answer:</label>
+            <select id="answer" name="answer">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Not Sure">Not Sure</option>
+            </select>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const uniqueId = params.get('id');
+        const databaseUrl = 'https://thequestion-7d499-default-rtdb.firebaseio.com/questions.json'; // Replace with Firebase URL
+
+        async function loadQuestion() {
+            const response = await fetch(databaseUrl);
+            const data = await response.json();
+            const question = Object.values(data).find(q => q.uniqueId == uniqueId);
+            document.getElementById('questionText').innerText = question.question;
+        }
+
+        document.getElementById('answerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const answer = document.getElementById('answer').value;
+
+            try {
+                await fetch(`${databaseUrl}/${uniqueId}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wifeAnswer: answer }),
+                });
+                alert('Your answer has been submitted!');
+            } catch (error) {
+                console.error("Error submitting answer:", error);
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+</html>
