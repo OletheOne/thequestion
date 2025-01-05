@@ -1,4 +1,4 @@
-const databaseUrl = 'https://thequestion-7d499-default-rtdb.firebaseio.com/questions.json'; // Replace with Firebase URL
+const databaseUrl = 'https://thequestion-7d499-default-rtdb.firebaseio.com/questions.json'; // Replace with Firebase Database URL
 
 document.getElementById('questionForm').addEventListener('submit', async (e) => {
     e.preventDefault();
